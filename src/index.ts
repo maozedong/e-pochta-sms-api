@@ -71,23 +71,36 @@ export class SMSAPI {
 
     private request<T>(params:IParams) {
         return new Promise<T>((resolve, reject) => {
-            request.post({
-                    url: `${this.url}/${this.version}/${params.action}`,
-                    json: true,
-                    formData: params
-                },
-                (err, res, body) => {
-                    if (err) {
-                        return reject(err);
-                    }
-                    //API always responds with statusCode=200. Need to examine body to check on errors
-                    if (body.error) {
-                        return reject(body);
-                    }
-                    let result = this.processResponce(body.result);
-                    resolve(result);
-                });
+            try {
+                request.post({
+                        url: `${this.url}/${this.version}/${params.action}`,
+                        json: true,
+                        form: params
+                    },
+                    (err, res, body) => {
+                        if (err) {
+                            return reject(err);
+                        }
+                        //API always responds with statusCode=200. Need to examine body to check on errors
+                        if (body.error) {
+                            return reject(body);
+                        }
+                        let result = this.processResponce(body.result);
+                        resolve(result);
+                    });
+            }catch (err){
+                reject(err);
+            }
         });
+    }
+
+    //we need this for proper md5 sum
+    private sanitizeParams(params) {
+        for(let key in params) {
+            if(params.hasOwnProperty(key) && params[key] == undefined){
+                params[key] = '';
+            }
+        }
     }
 
     private processResponce(result) {
@@ -113,6 +126,7 @@ export class SMSAPI {
             version: this.version,
             key: this.publicKey
         });
+        this.sanitizeParams(params);
         let sum = this.calcMD5(params);
         Object.assign(params, {sum: sum});
         return this.request<T>(params);
@@ -191,7 +205,7 @@ export class Stat {
     }
 
     //dateTime example 2012-05-01 00:20:00
-    sendSMS(params: {sender?: string, text?: string, phone?: string, datetime?: string, sms_lifetime?: number}){
+    sendSMS(params: {sender: string, text?: string, phone?: string, datetime?: string, sms_lifetime?: number}){
         return this.gateway.send('sendSMS', params);
     }
 

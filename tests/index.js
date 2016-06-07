@@ -32,7 +32,7 @@ describe('SMSAPI', () => {
         let postParams = {
             url: "http://atompark.com/api/sms/3.0/someAction",
             json: true,
-            formData: params
+            form: params
         };
         let spy = sinon.stub(request, "post").returns((params, cb) => {
             cb(null, null, {"result": {"some": "result"}});

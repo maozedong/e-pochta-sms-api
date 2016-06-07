@@ -2,10 +2,21 @@
   "name": "e-pochta-sms-api",
   "version": "0.0.1",
   "description": "Node wrapper for ePochta API(https://www.epochta.com.ua/products/sms/v3.php)",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/maozedong/e-pochta-sms-api.git"
+  },
+  "bugs":{
+    "url": "https://github.com/maozedong/e-pochta-sms-api/issues"
+  },
+  "engines": {
+    "node": ">=4.x"
+  },
+  "homepage": "https://github.com/maozedong/e-pochta-sms-api#readme",
   "main": "index.js",
   "typings": "./",
   "scripts": {
-    "test": "node tests/tests.js"
+    "test": "mocha tests/index.js"
   },
   "keywords": [
     "ePochta",

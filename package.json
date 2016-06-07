@@ -1,0 +1,21 @@
+{
+  "name": "e-pochta-sms-api",
+  "version": "1.0.0",
+  "description": "Node wrapper for ePochta API(https://www.epochta.com.ua/products/sms/v3.php)",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "ePochta",
+    "e-pochta",
+    "api",
+    "sms"
+  ],
+  "author": "Ostap Nagovitsyn",
+  "license": "ISC",
+  "dependencies": {
+    "md5": "^2.1.0",
+    "request": "^2.72.0"
+  }
+}

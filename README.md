@@ -1,5 +1,5 @@
 #e_pochta
-This is an API wrapper for online SMS and Email service [E-pochta](http://www.epochta.ru/products/sms/v3.php) v3.0.
+This is an API wrapper for online SMS service [E-pochta](http://www.epochta.ru/products/sms/v3.php) v3.0.
 
 ##Installation
 

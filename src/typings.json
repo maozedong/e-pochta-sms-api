@@ -3,8 +3,5 @@
     "md5": "registry:dt/md5#2.1.0+20160521153251",
     "node": "registry:dt/node#4.0.0+20160509154515",
     "request": "registry:dt/request#0.0.0+20160524135346"
-  },
-  "dependencies": {
-    "form-data": "registry:npm/form-data#1.0.0+20160211003958"
   }
 }

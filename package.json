@@ -1,10 +1,11 @@
 {
   "name": "e-pochta-sms-api",
-  "version": "1.0.0",
+  "version": "0.0.1",
   "description": "Node wrapper for ePochta API(https://www.epochta.com.ua/products/sms/v3.php)",
   "main": "index.js",
+  "typings": "./",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "node tests/tests.js"
   },
   "keywords": [
     "ePochta",
@@ -17,5 +18,10 @@
   "dependencies": {
     "md5": "^2.1.0",
     "request": "^2.72.0"
+  },
+  "devDependencies": {
+    "chai": "^3.5.0",
+    "mocha": "^2.5.3",
+    "sinon": "^1.17.4"
   }
 }

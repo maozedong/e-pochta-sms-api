@@ -1,8 +1,7 @@
-import * as request from "request";
-import md5 = require("md5");
-
-
-interface IEPochtaError {
+ import request = require("request");
+ import md5 = require("md5");
+ 
+ interface IEPochtaError {
     error:string;
     code:string;
     result:string;
@@ -28,7 +27,7 @@ interface IEPochtaListResponse {
     total:number;
 }
 
-export class SMSAPI implements ISMSAPI {
+export class SMSAPI {
 
     private static DEFAULT_VERSION = "3.0";
     // private static URL = `http://api.myatompark.com/sms/${EPochtaServiceBase.VERSION}`;
@@ -89,7 +88,6 @@ export class SMSAPI implements ISMSAPI {
                     resolve(result);
                 });
         });
-
     }
 
     private processResponce(result) {
@@ -121,11 +119,9 @@ export class SMSAPI implements ISMSAPI {
     }
 }
 
-
-
 export class Addressbook {
 
-    constructor(private gateway: ISMSAPI){}
+    constructor(private gateway: SMSAPI){}
 
     addAddressbook(params:{name:string, description?:string}) {
         return this.gateway.send<{result:{addressbook_id:number}}>('addAddressbook', params);
@@ -183,7 +179,7 @@ export class Addressbook {
 
 export class Stat {
 
-    constructor(private gateway: ISMSAPI) {}
+    constructor(private gateway: SMSAPI) {}
 
     //dateTime example 2012-05-01 00:20:00
     createCampaign(params: {sender?: string, text?: string, list_id?: number, datetime?: string,
@@ -195,12 +191,12 @@ export class Stat {
     }
 
     //dateTime example 2012-05-01 00:20:00
-    sendSMS(params: {sender?: string, text?: string, phone?: number, datetime?: string, sms_lifetime?: number}){
+    sendSMS(params: {sender?: string, text?: string, phone?: string, datetime?: string, sms_lifetime?: number}){
         return this.gateway.send('sendSMS', params);
     }
 
     //dateTime example 2012-05-01 00:20:00
-    sendsmsgroup(params: {sender?: string, text?: string, phones?: number[], datetime?: string, sms_lifetime?: number}){
+    sendSMSGroup(params: {sender?: string, text?: string, phones?: number[], datetime?: string, sms_lifetime?: number}){
         return this.gateway.send('sendsmsgroup', params);
     }
 }
